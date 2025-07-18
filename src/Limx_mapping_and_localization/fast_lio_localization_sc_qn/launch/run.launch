@@ -1,0 +1,69 @@
+<launch>
+
+	<arg name="rviz" default="true" />
+	<arg name="lidar" default="ouster" /> <!-- ouster, velodyne, livox -->
+	<arg name="odom_topic" default="/Odometry" />
+	<arg name="lidar_topic" default="/cloud_registered" />
+
+	<!-- visualize -->
+	<!--node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz_sam" args="-d $(find fast_lio_localization_sc_qn)/config/localization_rviz.rviz" launch-prefix="nice"/-->
+
+	<!-- run fast_lio_localization_sc_qn -->
+	<rosparam command="load" file="$(find fast_lio_localization_sc_qn)/config/config.yaml" />
+	<node pkg="fast_lio_localization_sc_qn" type="fast_lio_localization_sc_qn_node" name="fast_lio_localization_sc_qn_node" output="screen">
+		<remap from="/Odometry" to="$(arg odom_topic)"/>
+		<remap from="/cloud_registered" to="$(arg lidar_topic)"/>
+	</node>
+
+	<!-- run fast_lio -->
+	<include if="$(eval arg ('lidar') == 'ouster')" file="$(find fast_lio)/launch/mapping_ouster64.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'velodyne')" file="$(find fast_lio)/launch/mapping_velodyne.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'livox')" file="$(find fast_lio)/launch/mapping_avia.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	
+	<include if="$(eval arg ('lidar') == 'livox_mid360')" file="$(find fast_lio)/launch/mapping_mid360.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	
+	<include if="$(eval arg ('lidar') == 'livox_fastlivo')" file="$(find fast_livo)/launch/mapping_mid360.launch">
+		<arg name="rviz" value="false"/>
+		<remap from="/aft_mapped_to_init" to="/Odometry"/>
+	</include>
+
+	<include if="$(eval arg ('lidar') == 'kitti')" file="$(find fast_lio)/../fastlio_config_launch/kitti.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'mulran')" file="$(find fast_lio)/../fastlio_config_launch/mulran.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'newer-college2020')" file="$(find fast_lio)/../fastlio_config_launch/newer-college2020.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'kimera-multi-acl_jackal2')" file="$(find fast_lio)/../fastlio_config_launch/kimera-multi-acl_jackal2.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'kimera-multi-apis')" file="$(find fast_lio)/../fastlio_config_launch/kimera-multi-apis.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+	<include if="$(eval arg ('lidar') == 'vbr-colosseo')" file="$(find fast_lio)/../fastlio_config_launch/vbr-colosseo.launch">
+		<arg name="rviz" value="false"/>
+	</include>
+
+	      <!-- 加载静态地图 -->
+	<arg name="2dmap" default="limx_map.yaml" />
+	<node name = "map_server" pkg = "map_server" type = "map_server" args="$(find fast_lio_localization_sc_qn)/2d_nav_map_dashahe/limx_map.yaml /map:=prior_map"/>
+
+	<!-- pointscloud2 to laserscans -->
+	<include file="$(find fast_lio_localization_sc_qn)/launch/PointsCloud2toLaserscan.launch">
+	</include>
+	<node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_1" args="0 0 0 0 0 0 body body_foot" />
+	<!-- 发布一个雷达初始位置camera_init到机器人足端初始位置body_init的静态映射 -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_2" args="0 0 0 0 0 0 map robot_foot_init" />
+	<!-- <node pkg="tf2_ros" type="static_transform_publisher" name="tf_pub_3" args="0 0 0 0 0 0 map fastlio_map" /> -->
+
+</launch>

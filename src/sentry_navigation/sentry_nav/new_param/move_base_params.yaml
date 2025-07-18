@@ -1,0 +1,42 @@
+shutdown_costmaps: false
+
+controller_frequency: 10.0 #30
+controller_patience: 10.0 # 30.0
+
+planner_frequency: 1.0
+planner_patience: 3.0
+
+oscillation_timeout: 15.0
+oscillation_distance: 0.5
+
+# Planner selection
+base_global_planner: "global_planner/GlobalPlanner"  
+base_local_planner: "teb_local_planner/TebLocalPlannerROS"
+
+max_planning_retries: 1
+
+recovery_behavior_enabled: true
+clearing_rotation_allowed: true
+
+recovery_behaviors:
+  - name: 'aggressive_reset'
+    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+
+  - name: 'clearing_rotation'
+    type: 'rotate_recovery/RotateRecovery'    
+
+aggressive_reset:
+  reset_distance: 0.3
+  layer_names: [obstacle_layer]
+
+clearing_rotation:
+  reset_distance: 2.0
+  layer_names: [obstacle_layer]
+
+#move_slow_and_clear:
+#  clearing_distance: 0.5
+#  limited_trans_speed: 0.1
+#  limited_rot_speed: 0.4
+#  limited_distance: 0.3
+
+

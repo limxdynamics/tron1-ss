@@ -1,0 +1,75 @@
+TebLocalPlannerROS:
+ odom_topic: Odometry
+ map_frame: map
+
+ # Trajectory
+ teb_autosize: True
+ dt_ref: 0.8
+ dt_hysteresis: 0.08
+ global_plan_overwrite_orientation: True
+ max_global_plan_lookahead_dist: 2.0
+ feasibility_check_no_poses: 5
+
+ # Robot
+ max_vel_x: 0.5
+ max_vel_y: 0
+ max_vel_y_backwards: 0
+ max_vel_x_backwards: 0.15
+ max_vel_theta: 0.4
+ acc_lim_x: 0.1
+ acc_lim_theta: 0.1
+ min_turning_radius: 0.0
+ decel_width: 0.01
+ 
+ footprint_model:
+   radius: 0.4
+#    footprint: [[-0.5, -0.35], [-0.5, 0.35],[0.5, 0.35], [0.5, -0.35]]
+   
+ # GoalTolerance
+
+ xy_goal_tolerance: 0.4
+ yaw_goal_tolerance: 0.3
+ free_goal_vel: False
+
+ # Obstacles
+
+ min_obstacle_dist: 0.2
+ include_costmap_obstacles: True
+ costmap_obstacles_behind_robot_dist: 1.0
+ obstacle_poses_affected: 7
+ costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH"
+ costmap_converter_spin_thread: True
+ costmap_converter_rate: 5
+
+ # Optimization
+
+ no_inner_iterations: 5
+ no_outer_iterations: 4
+ optimization_activate: True
+ optimization_verbose: False
+ penalty_epsilon: 0.1
+ weight_max_vel_x: 1
+ weight_max_vel_theta: 1
+ weight_acc_lim_x: 1
+ weight_acc_lim_theta: 1
+ weight_kinematics_nh: 1000
+ weight_kinematics_forward_drive: 100
+ weight_kinematics_turning_radius: 1
+ weight_optimaltime: 5
+ weight_obstacle: 30
+ weight_dynamic_obstacle: 20 # not in use yet
+ selection_alternative_time_cost: True # not in use yet
+
+ # Homotopy Class Planner
+
+ enable_homotopy_class_planning: True
+ enable_multithreading: True
+ simple_exploration: False
+ max_number_classes: 10
+ roadmap_graph_no_samples: 15
+ roadmap_graph_area_width: 5
+ h_signature_prescaler: 0.5
+ h_signature_threshold: 0.1
+ obstacle_keypoint_offset: 0.1
+ obstacle_heading_threshold: 0.45
+ visualize_hc_graph: False

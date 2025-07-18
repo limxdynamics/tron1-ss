@@ -1,0 +1,20 @@
+<launch>
+      <!-- 加载静态地图 -->
+    <node name="map_server" pkg="map_server" type="map_server" 
+          args="/home/limx/july_loop_clourse_test/src/fast-lio-mapping_and_localization-sc-qn/fast_lio_sam_sc_qn/limx_map.yaml" output="screen" />
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true" >
+        <rosparam file="$(find sentry_nav)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find sentry_nav)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find sentry_nav)/param/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find sentry_nav)/param/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find sentry_nav)/param/teb_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find sentry_nav)/param/teb_global_planner_params.yaml" command="load" />
+    </node>
+
+    <node pkg="sentry_nav" type="trans_tf_2d" name="trans_tF_2d" />
+    <!-- <node pkg="sentry_nav" type="trans_tf_2d_odom" name="trans_tF_2d_odom" />
+    <node pkg="sentry_nav" type="trans_odom_2d" name="trans_odom_2d" /> -->
+	<include file="$(find velocity_smoother_ema)/launch/velocity_smoother_ema.launch">
+	</include>
+</launch>

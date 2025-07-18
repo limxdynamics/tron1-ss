@@ -1,5 +1,5 @@
 # English | [中文](README_cn.md)
-# Deployment of Training Results
+# Tron1 SS
 
 ## 1. Deployment Environment Setup
 

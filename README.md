@@ -84,14 +84,14 @@ catkin_make_isolated
 ## 3. Run 
 
 mapping
-### Step 1: Open two Bash terminal.
+### Step 1: Mapping
 ```bash
 roslaunch livox_ros_driver2  msg_MID360.launch
 roslaunch fast_lio_sam_sc_qn run.launch lidar:=livox_mid360
 ```
 
 localization and navigation
-### Step 1: Open two Bash terminal.
+### Step 2: Localization & Navigation
 ```bash
 roslaunch livox_ros_driver2  msg_MID360.launch
 roslaunch fast_lio_localization_sc_qn run.launch lidar:=livox_mid360

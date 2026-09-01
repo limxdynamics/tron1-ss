@@ -97,4 +97,8 @@ roslaunch livox_ros_driver2  msg_MID360.launch
 roslaunch fast_lio_localization_sc_qn run.launch lidar:=livox_mid360
 ```
 
+## License
 
+This repository's own deployment & integration code is licensed under [Apache License 2.0](LICENSE). However, the bundled localization & mapping stack (`src/fast-lio-mapping_and_localization-sc-qn/`) is from third parties and is licensed under **CC BY-NC-SA 4.0 (non-commercial)**; it also bundles GPL-2.0 (FAST_LIO) and MIT components.
+
+> ⚠️ **Commercial use of the localization & mapping stack requires a license from the original authors, or replacing those components.** See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for details.

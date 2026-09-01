@@ -85,3 +85,8 @@ sudo ldconfig
     roslaunch fast_lio_localization_sc_qn run.launch lidar:=livox_mid360
     ```
 
+## 许可证
+
+本仓库自身的部署与集成代码采用 [Apache License 2.0](LICENSE)。但捆绑的定位/建图栈（`src/fast-lio-mapping_and_localization-sc-qn/`）来自第三方，许可为 **CC BY-NC-SA 4.0（禁止商用）**，其中还包含 GPL-2.0（FAST_LIO）与 MIT 组件。
+
+> ⚠️ **商用使用该定位/建图栈需联系原作者获取授权，或替换这些组件。** 详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

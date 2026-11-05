@@ -6,17 +6,13 @@
   <a href="README.md">English</a> | <b>中文</b>
 </p>
 
-<!-- limx-community:start -->
-<!-- Managed by limxdynamics/limxdynamics/.github/community/sync_community.py; QR code: doc/wechat_qr.png in that repo -->
-<p align="center"><a href="https://github.com/limxdynamics/limxdynamics/blob/main/doc/wechat_qr.png"><img src="https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E7%BE%A4-%E6%89%AB%E7%A0%81%E5%8A%A0%E5%85%A5%20%C2%B7%20%E8%A6%86%E7%9B%96%E5%85%A8%E9%83%A8%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE-07C160?style=for-the-badge&logo=wechat&logoColor=white" alt="微信开发者社区"></a></p>
-<!-- limx-community:end -->
-
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/own%20code-Apache--2.0-2f6feb" alt="Own code: Apache-2.0"></a>
   <a href="THIRD_PARTY_NOTICES.md"><img src="https://img.shields.io/badge/mapping%20stack-CC%20BY--NC--SA%204.0-8a6d3b" alt="Mapping stack: CC BY-NC-SA 4.0"></a>
   <img src="https://img.shields.io/badge/ROS-Noetic-2f6feb" alt="ROS Noetic">
   <img src="https://img.shields.io/badge/Ubuntu-20.04-2f6feb" alt="Ubuntu 20.04">
   <img src="https://img.shields.io/badge/LiDAR-Livox%20MID--360-2f6feb" alt="Livox MID-360">
+  <a href="https://github.com/limxdynamics/limxdynamics/blob/main/doc/wechat_qr.png"><img src="https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-%E5%BC%80%E5%8F%91%E8%80%85%E7%A4%BE%E5%8C%BA-07C160?logo=wechat&logoColor=white" alt="微信开发者社区"></a>
 </p>
 
 # Tron1 SS
